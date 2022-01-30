@@ -5,4 +5,4 @@ const path = `${__dirname}/src`;
 const app = express();
 app.use(express.static(path));
 
-app.listen(port, () => {`Iniciado Frontend na porta ${port}`});
+app.listen(port, () => {console.log(`Iniciado Frontend na porta ${port}`)});
