@@ -1,6 +1,6 @@
 const onexit = require("./exit.js");
 const fs = require('fs');
-const clientsPath = `${__dirname}/database/clients.json`;
+const clientsPath = `${__dirname.replace("modules", "")}database/clients.json`;
 const clients = LoadClients ();
 
 function exitHandler(options, exitCode) {
