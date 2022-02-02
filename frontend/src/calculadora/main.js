@@ -2,11 +2,25 @@ const path = "http://localhost:3000/calculadora"
 
 function UpdateVisor()
 {
-    visor.innerText = operand2 && operator ? `${operand1} ${operator.symbol} ${operand2}` : operator ? `${operand1} ${operator.symbol}` : operand1 ? `${operand1}` : "0";
+    if(!operand1) 
+    {
+        visor.innerText = "0";
+        return;
+    } else if (!operator)
+    {
+        visor.innerText = `${operand1}`;
+        return;
+    } else if (!operand2)
+    {
+        visor.innerText = `${operand1} ${operator.symbol}`;
+        return;
+    } 
+    visor.innerText = `${operand1} ${operator.symbol} ${operand2}`;
 }
 
 function GetResult ()
 {
+    if(!operand1 || !operator || !operand2) return;
     fetch(`${path}/?operand1=${operand1}&operator=${operator.name}&operand2=${operand2}`, {})
     .then((resp) => resp.json())
     .then(data => 
@@ -37,7 +51,7 @@ function GetOperators (callback)
     .then((resp) => resp.json())
     .then(data => 
     {
-        console.log(data);
+        //console.log(data);
         callback(data);
     })
     .catch(function (error) {

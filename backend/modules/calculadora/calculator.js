@@ -15,6 +15,7 @@ function Calculator ()
         {name:"multiplicação", symbol:"*", operation: (a, b) => a*b},
         {name:"potencia", symbol:"^", operation: (a, b) => Math.pow(a, b)},
         {name:"resto", symbol:"%", operation: (a, b) => a % b},
+        /* {name:"logaritmo", symbol:"log", operation: (a, b) => a % b}, */
     ];
     let dicOperators = operators.reduce((n, op) => 
     {
@@ -25,7 +26,7 @@ function Calculator ()
         operators: operators,
         getResult (opA, operation, opB)
         {
-            if(!dicOperators.hasOwnProperty(operation)) return "0";
+            if(!operation || !dicOperators.hasOwnProperty(operation)) return "0";
 
             const oA = parseFloat(opA), oB = parseFloat(opB);
             if(!oA || !oB) return "0";
@@ -34,10 +35,6 @@ function Calculator ()
             let r = dicOperators[operation].operation(oA, oB);
             return `${r}`;
             
-        },
-        Show () {
-            let n = operation > -1;
-            return n && operand2 != 0 ? `${operand1} ${operators[operation].symbol} ${operand2}` : n ? `${operand1} ${operacoes[operation].symbol}` : operand1;
         }
     };
 
